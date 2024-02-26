@@ -16,23 +16,21 @@ export default function Navbar() {
                         {!user ? (
                             <>
                                 <div className="flex items-center gap-3">
-                                    <Link to="/register" className="btn bg-slate-100 text-slate-800 font-semibold">
+                                    <Link to="/register" className="font-semibold btn bg-slate-100 text-slate-800">
                                         Register
                                     </Link>
-                                    <Link to="/login" className="btn bg-slate-100 text-slate-800 font-semibold">
+                                    <Link to="/login" className="font-semibold btn bg-slate-100 text-slate-800">
                                         Login
                                     </Link>
                                 </div>
                             </>
                         ) : (
-                            <>
-                                <Link to="/account" className="btn text-slate-100 font-semibold">
-                                    Welcome back, {user.username}
-                                </Link>
+                            <div className="flex items-center gap-2">
+                                <div className="font-semibold btn text-slate-100">Welcome back, {user.username}</div>
                                 <button onClick={handleLogout} className="btn bg-slate-100 text-slate-800">
                                     Logout
                                 </button>
-                            </>
+                            </div>
                         )}
                     </div>
                 </nav>

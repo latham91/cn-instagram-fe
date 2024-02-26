@@ -8,6 +8,8 @@ import { createComment, likePost } from "../utils/postFetch";
 
 export default function PostCard({ post, likes }) {
     const { user } = useContext(AuthContext);
+    const [comments, setComments] = useState(post.comments);
+    const [optLikes, setOptLikes] = useState(likes);
     const [toggleComments, setToggleComments] = useState(false);
     const [content, setContent] = useState("");
 
@@ -20,8 +22,46 @@ export default function PostCard({ post, likes }) {
             content,
         };
 
-        await createComment(commentBody);
+        try {
+            const optimisticComment = {
+                _id: Date.now(),
+                content,
+                userId: {
+                    _id: user.id,
+                    username: user.username,
+                },
+                postId: post._id,
+                createdAt: new Date().toISOString(),
+            };
+
+            setComments([...comments, optimisticComment]);
+
+            await createComment(commentBody);
+
+            setContent("");
+        } catch (error) {
+            console.error("Error creating comment:", error);
+        }
     };
+
+    const handleLikePost = async () => {
+        try {
+            let optimisticLikes = [...optLikes];
+
+            if (optLikes.some((like) => like.userId === user.id)) {
+                optimisticLikes = optimisticLikes.filter((like) => like.userId !== user.id);
+                setOptLikes(optimisticLikes);
+            } else {
+                optimisticLikes.push({ userId: user.id });
+                setOptLikes(optimisticLikes);
+            }
+
+            await likePost(post._id);
+        } catch (error) {
+            console.error("Error liking post:", error);
+        }
+    };
+
     return (
         <div className="overflow-hidden border rounded-md border-slate-300 bg-gradient-to-br from-transparent to-slate-400">
             <div className="flex items-center justify-between p-5 bg-slate-800">
@@ -40,25 +80,25 @@ export default function PostCard({ post, likes }) {
 
             <div className="flex items-center justify-between gap-3 px-5 py-3 bg-slate-800">
                 <span className="text-lg">
-                    {post.likes.length} {post.likes.length === 1 ? "like" : "likes"}
+                    {optLikes.length} {optLikes.length === 1 ? "like" : "likes"}
                 </span>
                 <div className="flex items-center gap-2">
                     <button
-                        onClick={() => likePost(post._id)}
+                        onClick={handleLikePost}
                         disabled={!user}
                         className={`btn flex items-center gap-2 bg-slate-100 text-slate-800 disabled:bg-gray-300 disabled:text-gray-400 `}
                     >
                         <ThumbsUp size={16} />
-                        {user && likes.some((like) => like.userId === user.id) ? "Unlike" : "Like"}
+                        {user && optLikes.some((like) => like.userId === user.id) ? "Unlike" : "Like"}
                     </button>
                     <button
                         onClick={() => setToggleComments(!toggleComments)}
                         className="flex items-center gap-2 btn bg-slate-100 text-slate-800"
                     >
                         <SquarePen size={16} />
-                        {post && post.comments.length === 1
+                        {post && comments.length === 1
                             ? "1 Comment"
-                            : `${post.comments.length || "No"} Comment${post.comments.length !== 1 ? "s" : ""}`}
+                            : `${comments.length || "No"} Comment${comments.length !== 1 ? "s" : ""}`}
                     </button>
                 </div>
             </div>
@@ -66,8 +106,8 @@ export default function PostCard({ post, likes }) {
                 <div className="p-5 bg-slate-800">
                     <span>Comments</span>
                     <div className="flex flex-col gap-4 p-3 rounded-md bg-slate-100 text-slate-800">
-                        {post.comments.length ? (
-                            post.comments.map((comment) => <PostComment key={comment._id} comment={comment} />)
+                        {comments.length ? (
+                            comments.map((comment) => <PostComment key={comment._id} comment={comment} />)
                         ) : (
                             <p>No comments yet</p>
                         )}
@@ -76,6 +116,7 @@ export default function PostCard({ post, likes }) {
                         <div className="flex items-center gap-2 mt-3">
                             <input
                                 onChange={(e) => setContent(e.target.value)}
+                                value={content}
                                 type="text"
                                 className="w-full px-4 py-2 text-sm border rounded-sm outline-zinc-500 text-slate-800"
                             />

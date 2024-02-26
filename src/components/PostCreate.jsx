@@ -34,6 +34,8 @@ export default function PostCreate() {
         if (!data.success) {
             return console.log(data.message);
         }
+
+        window.location.reload();
     };
 
     return (
@@ -66,7 +68,7 @@ export default function PostCreate() {
                             accept="image/*"
                         />
                         <label htmlFor="image" className="cursor-pointer">
-                            <ImagePlus size={24} />
+                            <ImagePlus size={34} />
                         </label>
                         {postBody.image && <span>{fileName}</span>}
                     </div>
