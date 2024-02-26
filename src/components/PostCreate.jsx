@@ -38,9 +38,9 @@ export default function PostCreate() {
 
     return (
         <div className="flex w-full border rounded-md border-slate-300 bg-slate-800">
-            <div className="flex w-full p-4 flex-col gap-5">
+            <div className="flex flex-col w-full gap-5 p-4">
                 <div>
-                    <span className="font-semibold">@aaron</span>
+                    <span className="font-semibold">@{user.username}</span>
                     <textarea
                         onChange={(e) => {
                             setTextAreaLength(e.target.value.length);
@@ -70,7 +70,7 @@ export default function PostCreate() {
                         </label>
                         {postBody.image && <span>{fileName}</span>}
                     </div>
-                    <button onClick={handleSubmit} className="btn bg-zinc-100 text-slate-800 flex items-center gap-2">
+                    <button onClick={handleSubmit} className="flex items-center gap-2 btn bg-zinc-100 text-slate-800">
                         <Newspaper size={16} />
                         Create post
                     </button>

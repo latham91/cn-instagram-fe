@@ -8,7 +8,12 @@ import Loginpage from "./pages/Loginpage";
 import Registerpage from "./pages/Registerpage";
 import { AuthContext } from "./context/AuthContext";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 export default function App() {
+    AOS.init();
+
     const { setUser } = useContext(AuthContext);
 
     useEffect(() => {

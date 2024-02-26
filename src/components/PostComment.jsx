@@ -1,11 +1,20 @@
-export default function PostComment() {
+import PropTypes from "prop-types";
+import formatTimeSince from "../utils/formatTimestamp";
+
+export default function PostComment({ comment }) {
+    const formattedTime = formatTimeSince(comment.createdAt);
+
     return (
         <div className="text-sm">
-            <div className="flex justify-between items-center">
-                <span className="font-semibold">@aaron</span>
-                <span>1 hour ago</span>
+            <div className="flex items-center justify-between">
+                <span className="font-semibold">@{comment.userId.username}</span>
+                <span>{formattedTime}</span>
             </div>
-            <p>This is a dummy comment.</p>
+            <p>{comment.content}</p>
         </div>
     );
 }
+
+PostComment.propTypes = {
+    comment: PropTypes.object.isRequired,
+};

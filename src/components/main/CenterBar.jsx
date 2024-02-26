@@ -1,7 +1,8 @@
-import PostCreate from "../PostCreate";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { getAllPosts } from "../../utils/postFetch";
+
+import PostCreate from "../PostCreate";
 import PostCard from "../PostCard";
 
 export default function CenterBar() {
@@ -21,11 +22,11 @@ export default function CenterBar() {
     }, []);
 
     return (
-        <div className="flex justify-center flex-col overflow-y-auto w-full sm:w-full md:w-3/5">
+        <div className="flex flex-col justify-center w-full sm:w-full md:w-3/5">
             {user && <PostCreate />}
-            <div className="grid grid-cols-1 my-5">
+            <div className="grid grid-cols-1 gap-5 my-5">
                 {posts && posts.map((post) => <PostCard key={post._id} post={post} likes={post.likes} />)}
-                {!posts.length && <div className="flex justify-center items-center py-5 text-lg">No posts found</div>}
+                {!posts.length && <div className="flex items-center justify-center py-5 text-lg">No posts found</div>}
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 export const registerUser = async (credentials) => {
     try {
-        const response = await fetch("http://localhost:5001/api/users/register", {
+        const response = await fetch("http://192.168.1.145:5001/api/users/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -18,7 +18,7 @@ export const registerUser = async (credentials) => {
 
 export const loginUser = async (credentials) => {
     try {
-        const response = await fetch("http://localhost:5001/api/users/login", {
+        const response = await fetch("http://192.168.1.145:5001/api/users/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -36,7 +36,7 @@ export const loginUser = async (credentials) => {
 
 export const verifyUser = async () => {
     try {
-        const response = await fetch("http://localhost:5001/api/users/verify", {
+        const response = await fetch("http://192.168.1.145:5001/api/users/verify", {
             method: "POST",
             mode: "cors",
             headers: {
