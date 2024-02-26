@@ -9,7 +9,7 @@ export default function Navbar() {
         <header>
             <Container>
                 <nav className="flex items-center justify-between">
-                    <div className="text-3xl font-extrabold">
+                    <div className="text-3xl font-extrabold text-slate-800">
                         <Link to="/">SnapGram</Link>
                     </div>
                     <div>
@@ -19,7 +19,7 @@ export default function Navbar() {
                                     <Link to="/register" className="btn btn-primary">
                                         Register
                                     </Link>
-                                    <Link to="/login" className="btn btn-outline">
+                                    <Link to="/login" className="btn btn-secondary">
                                         Login
                                     </Link>
                                 </div>

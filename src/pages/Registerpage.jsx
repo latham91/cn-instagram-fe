@@ -6,8 +6,8 @@ export default function Loginpage() {
         <section className="py-10">
             <Container>
                 <div className="flex justify-center items-center flex-col gap-2">
-                    <h1 className="text-4xl font-extrabold">Create your account</h1>
-                    <p className="text-lg text-zinc-800">
+                    <h1 className="text-5xl font-extrabold text-zinc-800">Create your account</h1>
+                    <p className="text-lg text-zinc-100">
                         Create an account and begin sharing your moments with friends.
                     </p>
                     <AuthForm mode="register" />
