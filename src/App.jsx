@@ -1,11 +1,29 @@
+import { useContext, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import { verifyUser } from "./utils/authFetch";
+
 import Navbar from "./components/Navbar";
 import Container from "./components/Container";
 import Homepage from "./pages/Homepage";
 import Loginpage from "./pages/Loginpage";
 import Registerpage from "./pages/Registerpage";
+import { AuthContext } from "./context/AuthContext";
 
 export default function App() {
+    const { setUser } = useContext(AuthContext);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const data = await verifyUser();
+
+            if (data.success) {
+                setUser(data.user);
+            }
+        };
+
+        fetchUser();
+    }, [setUser]);
+
     return (
         <Container>
             <Navbar />
