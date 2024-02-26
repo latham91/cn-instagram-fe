@@ -34,8 +34,6 @@ export default function PostCreate() {
         if (!data.success) {
             return console.log(data.message);
         }
-
-        console.log(data);
     };
 
     return (

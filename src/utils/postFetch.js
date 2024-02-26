@@ -29,3 +29,23 @@ export const createPost = async (post) => {
         return error;
     }
 };
+
+export const likePost = async (postId) => {
+    try {
+        const response = await fetch(`http://localhost:5001/api/likes/${postId}`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "http://localhost:5001",
+            },
+            credentials: "include",
+        });
+
+        const data = await response.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        return error;
+    }
+};

@@ -1,12 +1,10 @@
 import PropTypes from "prop-types";
 import { createContext, useState } from "react";
 import { createPost } from "../utils/postFetch";
-import { useNavigate } from "react-router-dom";
 
 const PostContext = createContext();
 
 function PostProvider({ children }) {
-    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
 
@@ -26,7 +24,7 @@ function PostProvider({ children }) {
             }
 
             setLoading(false);
-            navigate("/");
+            window.location.reload();
             return data;
         } catch (error) {
             setTimeout(() => {

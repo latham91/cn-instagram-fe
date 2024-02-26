@@ -6,30 +6,30 @@ import { AuthContext } from "../context/AuthContext";
 export default function Navbar() {
     const { user, handleLogout } = useContext(AuthContext);
     return (
-        <header>
+        <header className="bg-slate-800">
             <Container>
                 <nav className="flex items-center justify-between">
-                    <div className="text-3xl font-extrabold text-slate-800">
+                    <div className="text-3xl font-extrabold text-slate-100">
                         <Link to="/">SnapGram</Link>
                     </div>
                     <div>
                         {!user ? (
                             <>
                                 <div className="flex items-center gap-3">
-                                    <Link to="/register" className="btn btn-primary">
+                                    <Link to="/register" className="btn bg-slate-100 text-slate-800 font-semibold">
                                         Register
                                     </Link>
-                                    <Link to="/login" className="btn btn-secondary">
+                                    <Link to="/login" className="btn bg-slate-100 text-slate-800 font-semibold">
                                         Login
                                     </Link>
                                 </div>
                             </>
                         ) : (
                             <>
-                                <Link to="/account" className="btn text-zinc-800 font-semibold">
+                                <Link to="/account" className="btn text-slate-100 font-semibold">
                                     Welcome back, {user.username}
                                 </Link>
-                                <button onClick={handleLogout} className="btn btn-primary">
+                                <button onClick={handleLogout} className="btn bg-slate-100 text-slate-800">
                                     Logout
                                 </button>
                             </>
