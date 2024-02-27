@@ -7,6 +7,7 @@ import Homepage from "./pages/Homepage";
 import Loginpage from "./pages/Loginpage";
 import Registerpage from "./pages/Registerpage";
 import { AuthContext } from "./context/AuthContext";
+import Profilepage from "./pages/Profilepage";
 
 export default function App() {
     const { setUser } = useContext(AuthContext);
@@ -30,6 +31,7 @@ export default function App() {
                 <Route path="/" element={<Homepage />} />
                 <Route path="/login" element={<Loginpage />} />
                 <Route path="/register" element={<Registerpage />} />
+                <Route path="/profile" element={<Profilepage />} />
             </Routes>
         </>
     );
