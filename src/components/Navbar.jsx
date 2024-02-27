@@ -26,7 +26,9 @@ export default function Navbar() {
                             </>
                         ) : (
                             <div className="flex items-center gap-2">
-                                <div className="font-semibold btn text-slate-100">Welcome back, {user.username}</div>
+                                <Link to="/profile" className="font-semibold btn text-slate-100">
+                                    Welcome back, {user.username}
+                                </Link>
                                 <button onClick={handleLogout} className="btn bg-slate-100 text-slate-800">
                                     Logout
                                 </button>

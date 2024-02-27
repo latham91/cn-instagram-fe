@@ -28,10 +28,10 @@ export default function App() {
         <>
             <Navbar />
             <Routes>
-                <Route path="/" element={<Homepage />} />
+                <Route exact path="/" element={<Homepage />} />
                 <Route path="/login" element={<Loginpage />} />
                 <Route path="/register" element={<Registerpage />} />
-                <Route path="/profile" element={<Profilepage />} />
+                <Route path="/profile/:username" element={<Profilepage />} />
             </Routes>
         </>
     );
