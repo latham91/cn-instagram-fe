@@ -38,7 +38,7 @@ export default function PostCreate() {
     };
 
     return (
-        <div className="flex w-full border rounded-md border-slate-300 bg-slate-800">
+        <div className="flex w-full mb-10 border rounded-md shadow-2xl shadow-slate-400 border-slate-300 bg-slate-800">
             <div className="flex flex-col w-full gap-5 p-4">
                 <div>
                     <span className="text-xl font-semibold">@{user.username}</span>

@@ -91,3 +91,14 @@ export const deletePost = async (postId, userId) => {
         return error;
     }
 };
+
+export const getPostsByUsername = async (username) => {
+    try {
+        const response = await fetch(`http://192.168.1.145:5001/api/posts/${username}`);
+        const data = await response.json();
+
+        return data;
+    } catch (error) {
+        return error;
+    }
+};
