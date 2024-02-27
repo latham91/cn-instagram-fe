@@ -22,12 +22,18 @@ export default function CenterBar() {
     }, []);
 
     return (
-        <div className="flex flex-col justify-center w-full sm:w-full md:w-3/5">
-            {user && <PostCreate />}
-            <div className="grid grid-cols-1 gap-5 my-5">
-                {posts && posts.map((post) => <PostCard key={post._id} post={post} likes={post.likes} />)}
-                {!posts.length && <div className="flex items-center justify-center py-5 text-lg">No posts found</div>}
+        <>
+            <div className="flex flex-col justify-center w-full sm:w-full md:w-3/5">
+                {user && <PostCreate />}
+                <div className="grid grid-cols-1 gap-5 my-5">
+                    {posts && posts.map((post) => <PostCard key={post._id} post={post} likes={post.likes} />)}
+                    {!posts.length && (
+                        <div className="flex items-center justify-center py-5 text-lg">
+                            No posts found. Be the first to share a moment.
+                        </div>
+                    )}
+                </div>
             </div>
-        </div>
+        </>
     );
 }

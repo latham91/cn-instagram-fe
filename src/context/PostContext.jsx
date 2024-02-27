@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { createContext, useState } from "react";
-import { createPost } from "../utils/postFetch";
+import { createPost, deletePost } from "../utils/postFetch";
 
 const PostContext = createContext();
 
@@ -9,7 +9,6 @@ function PostProvider({ children }) {
     const [errorMsg, setErrorMsg] = useState("");
 
     const handleCreatePost = async (post) => {
-        console.log(post);
         try {
             setLoading(true);
             const data = await createPost(post);
@@ -35,8 +34,36 @@ function PostProvider({ children }) {
         }
     };
 
+    const handleDeletePost = async (postId, userId) => {
+        try {
+            setLoading(true);
+            const data = await deletePost(postId, userId);
+
+            if (!data.success) {
+                setTimeout(() => {
+                    setErrorMsg("");
+                }, 3000);
+
+                setLoading(false);
+                return setErrorMsg(data.message);
+            }
+
+            setLoading(false);
+            window.location.reload();
+            return data;
+        } catch (error) {
+            setTimeout(() => {
+                setErrorMsg("");
+            }, 3000);
+
+            return setErrorMsg(error.message);
+        }
+    };
+
     return (
-        <PostContext.Provider value={{ loading, setLoading, errorMsg, setErrorMsg, handleCreatePost }}>
+        <PostContext.Provider
+            value={{ loading, setLoading, errorMsg, setErrorMsg, handleCreatePost, handleDeletePost }}
+        >
             {children}
         </PostContext.Provider>
     );

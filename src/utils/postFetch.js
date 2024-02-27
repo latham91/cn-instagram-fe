@@ -70,3 +70,24 @@ export const createComment = async (comment) => {
         return error;
     }
 };
+
+export const deletePost = async (postId, userId) => {
+    try {
+        const response = await fetch(`http://192.168.1.145:5001/api/posts/${postId}`, {
+            method: "DELETE",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "http://localhost:5001",
+            },
+            credentials: "include",
+            body: JSON.stringify({ userId }),
+        });
+
+        const data = await response.json();
+
+        return data;
+    } catch (error) {
+        return error;
+    }
+};

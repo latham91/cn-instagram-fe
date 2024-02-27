@@ -1,13 +1,15 @@
 import PropTypes from "prop-types";
-import { SquarePen, ThumbsUp } from "lucide-react";
+import { SquarePen, ThumbsUp, Trash } from "lucide-react";
 import formatTimeSince from "../utils/formatTimestamp";
 import PostComment from "./PostComment";
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { PostContext } from "../context/PostContext";
 import { createComment, likePost } from "../utils/postFetch";
 
 export default function PostCard({ post, likes }) {
     const { user } = useContext(AuthContext);
+    const { handleDeletePost } = useContext(PostContext);
     const [comments, setComments] = useState(post.comments);
     const [optLikes, setOptLikes] = useState(likes);
     const [toggleComments, setToggleComments] = useState(false);
@@ -66,10 +68,21 @@ export default function PostCard({ post, likes }) {
         <div className="overflow-hidden border rounded-md border-slate-300 bg-gradient-to-br from-transparent to-slate-400">
             <div className="flex items-center justify-between p-5 bg-slate-800">
                 <h3 className="text-2xl font-semibold">@{post.userId.username}</h3>
-                <span>{formattedTime}</span>
+                <div className="flex items-center justify-center gap-3">
+                    <span>{formattedTime}</span>
+                    {user && post.userId._id === user.id && (
+                        <button
+                            onClick={() => handleDeletePost(post._id, post.userId._id)}
+                            className="flex items-center justify-center gap-2 p-2 text-sm bg-red-500 rounded-md"
+                        >
+                            <Trash size={20} />
+                            Delete
+                        </button>
+                    )}
+                </div>
             </div>
             <div className="w-full">
-                <img src={post.image} alt="post" draggable={false} className="object-cover object-top w-full" />
+                <img src={post.image} alt="post" draggable={false} className="object-cover w-full max-h-[700px]" />
             </div>
             <div>
                 <p className="flex items-center gap-2 p-5 bg-slate-200 text-slate-800">

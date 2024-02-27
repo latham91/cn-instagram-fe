@@ -21,7 +21,6 @@ export default function PostCreate() {
             const reader = new FileReader();
             reader.onload = () => {
                 const base64 = reader.result;
-                // Update state with the Base64 string after the file is read
                 setPostBody({ ...postBody, image: base64 });
             };
             reader.readAsDataURL(file);
@@ -42,7 +41,7 @@ export default function PostCreate() {
         <div className="flex w-full border rounded-md border-slate-300 bg-slate-800">
             <div className="flex flex-col w-full gap-5 p-4">
                 <div>
-                    <span className="font-semibold">@{user.username}</span>
+                    <span className="text-xl font-semibold">@{user.username}</span>
                     <textarea
                         onChange={(e) => {
                             setTextAreaLength(e.target.value.length);
@@ -52,10 +51,10 @@ export default function PostCreate() {
                             });
                         }}
                         placeholder="Whats on your mind?"
-                        className="border py-2 px-4 rounded-sm w-full max-h-[150px] min-h-[70px] text-slate-800 focus:outline-slate-800"
+                        className="border py-2 px-4 mt-2 rounded-sm w-full max-h-[150px] min-h-[70px] text-slate-800 focus:outline-slate-800"
                         maxLength={255}
                     />
-                    <span className="flex justify-end">{textAreaLength}/255</span>
+                    <span className="flex justify-end">{textAreaLength}/255 characters</span>
                 </div>
                 <div className="flex justify-between">
                     <div className="flex items-center gap-4">
@@ -67,10 +66,10 @@ export default function PostCreate() {
                             className="hidden"
                             accept="image/*"
                         />
-                        <label htmlFor="image" className="cursor-pointer">
+                        <label htmlFor="image" className="flex items-center gap-3 font-semibold cursor-pointer">
                             <ImagePlus size={34} />
+                            <span>{postBody.image ? fileName : "Upload an image"}</span>
                         </label>
-                        {postBody.image && <span>{fileName}</span>}
                     </div>
                     <button onClick={handleSubmit} className="flex items-center gap-2 btn bg-zinc-100 text-slate-800">
                         <Newspaper size={16} />
