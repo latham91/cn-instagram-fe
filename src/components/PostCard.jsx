@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
-import { SquarePen, ThumbsUp, Trash } from "lucide-react";
+import { Clock, SquarePen, ThumbsUp, Trash } from "lucide-react";
 import formatTimeSince from "../utils/formatTimestamp";
 import PostComment from "./PostComment";
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { PostContext } from "../context/PostContext";
 import { createComment, likePost } from "../utils/postFetch";
+import { Link } from "react-router-dom";
 
-export default function PostCard({ post, likes }) {
+export default function PostCard({ post, likes, profile }) {
     const { user } = useContext(AuthContext);
     const { handleDeletePost } = useContext(PostContext);
     const [comments, setComments] = useState(post.comments);
@@ -65,11 +66,16 @@ export default function PostCard({ post, likes }) {
     };
 
     return (
-        <div className="overflow-hidden border rounded-md border-slate-300 bg-gradient-to-br from-transparent to-slate-400">
+        <div className="overflow-hidden border rounded-md shadow-2xl shadow-slate-500 border-slate-300 bg-gradient-to-br from-transparent to-slate-400">
             <div className="flex items-center justify-between p-5 bg-slate-800">
-                <h3 className="text-2xl font-semibold">@{post.userId.username}</h3>
+                <h3 className="text-2xl font-semibold hover:text-slate-400">
+                    <Link to={`/profile/${post.userId.username}`}>@{post.userId.username}</Link>
+                </h3>
                 <div className="flex items-center justify-center gap-3">
-                    <span>{formattedTime}</span>
+                    <span className="flex items-center gap-2">
+                        <Clock size={20} />
+                        {formattedTime}
+                    </span>
                     {user && post.userId._id === user.id && (
                         <button
                             onClick={() => handleDeletePost(post._id, post.userId._id)}
@@ -81,39 +87,48 @@ export default function PostCard({ post, likes }) {
                     )}
                 </div>
             </div>
-            <div className="w-full">
-                <img src={post.image} alt="post" draggable={false} className="object-cover w-full max-h-[700px]" />
+            <div className="w-full overflow-hidden">
+                <img
+                    src={post.image}
+                    alt="post"
+                    draggable={false}
+                    className="object-cover w-full max-h-[600px] transition-all duration-300 ease-in-out hover:scale-105"
+                />
             </div>
             <div>
-                <p className="flex items-center gap-2 p-5 bg-slate-200 text-slate-800">
+                <p className="flex gap-3 p-5 bg-slate-200 text-slate-800">
                     <span className="font-extrabold">@{post.userId.username}</span>
                     {post.description}
                 </p>
             </div>
 
-            <div className="flex items-center justify-between gap-3 px-5 py-3 bg-slate-800">
-                <span className="text-lg">
+            <div className="flex items-center justify-between gap-3 px-5 py-3 min-h-16 bg-slate-800">
+                <span className="text-lg font-semibold">
                     {optLikes.length} {optLikes.length === 1 ? "like" : "likes"}
                 </span>
-                <div className="flex items-center gap-2">
-                    <button
-                        onClick={handleLikePost}
-                        disabled={!user}
-                        className={`btn flex items-center gap-2 bg-slate-100 text-slate-800 disabled:bg-gray-300 disabled:text-gray-400 `}
-                    >
-                        <ThumbsUp size={16} />
-                        {user && optLikes.some((like) => like.userId === user.id) ? "Unlike" : "Like"}
-                    </button>
-                    <button
-                        onClick={() => setToggleComments(!toggleComments)}
-                        className="flex items-center gap-2 btn bg-slate-100 text-slate-800"
-                    >
-                        <SquarePen size={16} />
-                        {post && comments.length === 1
-                            ? "1 Comment"
-                            : `${comments.length || "No"} Comment${comments.length !== 1 ? "s" : ""}`}
-                    </button>
-                </div>
+                {!profile && (
+                    <>
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={handleLikePost}
+                                disabled={!user}
+                                className={`btn flex items-center gap-2 bg-slate-100 text-slate-800 disabled:bg-gray-300 disabled:text-gray-400 `}
+                            >
+                                <ThumbsUp size={16} />
+                                {user && optLikes.some((like) => like.userId === user.id) ? "Unlike" : "Like"}
+                            </button>
+                            <button
+                                onClick={() => setToggleComments(!toggleComments)}
+                                className="flex items-center gap-2 btn bg-slate-100 text-slate-800"
+                            >
+                                <SquarePen size={16} />
+                                {post && comments.length === 1
+                                    ? "1 Comment"
+                                    : `${comments.length || "No"} Comment${comments.length !== 1 ? "s" : ""}`}
+                            </button>
+                        </div>
+                    </>
+                )}
             </div>
             {toggleComments && (
                 <div className="p-5 bg-slate-800">
@@ -147,4 +162,5 @@ export default function PostCard({ post, likes }) {
 PostCard.propTypes = {
     post: PropTypes.object.isRequired,
     likes: PropTypes.array.isRequired,
+    profile: PropTypes.bool,
 };

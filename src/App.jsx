@@ -7,6 +7,8 @@ import Homepage from "./pages/Homepage";
 import Loginpage from "./pages/Loginpage";
 import Registerpage from "./pages/Registerpage";
 import { AuthContext } from "./context/AuthContext";
+import Profilepage from "./pages/Profilepage";
+import CookieBanner from "./components/CookieBanner";
 
 export default function App() {
     const { setUser } = useContext(AuthContext);
@@ -27,10 +29,12 @@ export default function App() {
         <>
             <Navbar />
             <Routes>
-                <Route path="/" element={<Homepage />} />
+                <Route exact path="/" element={<Homepage />} />
                 <Route path="/login" element={<Loginpage />} />
                 <Route path="/register" element={<Registerpage />} />
+                <Route path="/profile/:username" element={<Profilepage />} />
             </Routes>
+            <CookieBanner />
         </>
     );
 }
