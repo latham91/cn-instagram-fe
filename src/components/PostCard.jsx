@@ -98,7 +98,7 @@ export default function PostCard({ post, likes, profile }) {
             </div>
             <div>
                 <p className="flex gap-3 p-5 bg-slate-200 text-slate-800">
-                    <span className="font-extrabold">@{post.userId.username}</span>
+                    <span className="font-extrabold">@{post.userId.username.toLowerCase()}</span>
                     {post.description}
                 </p>
             </div>
