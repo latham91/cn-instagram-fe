@@ -1,12 +1,10 @@
 import PropTypes from "prop-types";
 import { createContext, useState } from "react";
 import { createPost, deletePost } from "../utils/postFetch";
-import Cookies from "universal-cookie";
 
 const PostContext = createContext();
 
 function PostProvider({ children }) {
-    const cookies = new Cookies();
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
 

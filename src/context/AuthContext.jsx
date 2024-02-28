@@ -2,13 +2,11 @@ import PropTypes from "prop-types";
 import { createContext, useState } from "react";
 import { loginUser, logoutUser, registerUser } from "../utils/authFetch";
 import { useNavigate } from "react-router-dom";
-import Cookies from "universal-cookie";
 
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
     const navigate = useNavigate();
-    const cookies = new Cookies();
 
     // Auth State
     const [user, setUser] = useState(null);
