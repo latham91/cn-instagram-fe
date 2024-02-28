@@ -71,7 +71,7 @@ export default function PostCreate() {
                         />
                         <label htmlFor="image" className="flex items-center gap-3 font-semibold cursor-pointer">
                             <ImagePlus size={34} />
-                            <span>{postBody.image ? fileName : "Upload an image"}</span>
+                            <span>{postBody.image ? fileName.substring(0, 40) + "..." : "Upload an image"}</span>
                         </label>
                     </div>
                     <button
