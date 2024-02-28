@@ -1,17 +1,20 @@
 import PropTypes from "prop-types";
 import { createContext, useState } from "react";
 import { createPost, deletePost } from "../utils/postFetch";
+import Cookies from "universal-cookie";
 
 const PostContext = createContext();
 
 function PostProvider({ children }) {
+    const cookies = new Cookies();
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
+    const [authCookie, setAuthCookie] = useState(cookies.get("insta_auth"));
 
     const handleCreatePost = async (post) => {
         try {
             setLoading(true);
-            const data = await createPost(post);
+            const data = await createPost(post, authCookie);
 
             if (!data.success) {
                 setTimeout(() => {

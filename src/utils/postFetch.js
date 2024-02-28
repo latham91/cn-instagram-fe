@@ -1,3 +1,8 @@
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
+const token = cookies.get("insta_auth");
+
 export const getAllPosts = async () => {
     try {
         const response = await fetch("https://cn-instagram-be.onrender.com/api/posts");
@@ -16,6 +21,7 @@ export const createPost = async (post) => {
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(post),
             credentials: "include",
@@ -36,6 +42,7 @@ export const likePost = async (postId) => {
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
             },
             credentials: "include",
         });
@@ -55,6 +62,7 @@ export const createComment = async (comment) => {
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(comment),
             credentials: "include",
@@ -75,6 +83,7 @@ export const deletePost = async (postId, userId) => {
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
             },
             credentials: "include",
             body: JSON.stringify({ userId }),

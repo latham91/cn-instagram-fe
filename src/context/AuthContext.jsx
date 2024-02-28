@@ -79,7 +79,7 @@ function AuthProvider({ children }) {
 
     const handleLogout = async () => {
         try {
-            const data = await logoutUser();
+            const data = await logoutUser(authCookie);
 
             if (!data.success) {
                 return setErrorMsg(data.message);
