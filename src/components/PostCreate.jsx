@@ -56,7 +56,7 @@ export default function PostCreate() {
                     />
                     <div className="flex items-center justify-between">
                         {errorMsg && <span className="text-red-500 animate-pulse">{errorMsg}</span>}
-                        <span className="flex justify-end">{textAreaLength}/255 characters</span>
+                        <span className="flex justify-end w-full">{textAreaLength}/255 characters</span>
                     </div>
                 </div>
                 <div className="flex justify-between">
