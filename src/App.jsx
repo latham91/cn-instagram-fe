@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { sendOfflineSignal, verifyUser } from "./utils/authFetch";
+import { verifyUser } from "./utils/authFetch";
 
 import Navbar from "./components/Navbar";
 import Homepage from "./pages/Homepage";
@@ -11,7 +11,7 @@ import Profilepage from "./pages/Profilepage";
 import CookieBanner from "./components/CookieBanner";
 
 export default function App() {
-    const { setUser } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -29,7 +29,10 @@ export default function App() {
         const handleBeforeUnload = async (e) => {
             e.preventDefault();
             // Send a final signal to the server before the page is unloaded
-            await sendOfflineSignal();
+            navigator.sendBeacon(
+                "https://cn-instagram-be.onrender.com/api/users/setoffline",
+                JSON.stringify({ id: user.id })
+            );
         };
 
         window.addEventListener("visibilitychange", (e) => handleBeforeUnload(e));
