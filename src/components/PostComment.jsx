@@ -9,7 +9,7 @@ export default function PostComment({ comment }) {
         <div className="text-sm">
             <div className="flex items-center justify-between">
                 <span className="font-semibold">
-                    <Link to={`/profile/${comment.userId._id}`}>@{comment.userId.username}</Link>
+                    <Link to={`/profile/${comment.userId._id}`}>@{comment.userId.username.toLowerCase()}</Link>
                 </span>
                 <span>{formattedTime}</span>
             </div>

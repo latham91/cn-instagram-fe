@@ -69,7 +69,7 @@ export default function PostCard({ post, likes, profile }) {
         <div className="overflow-hidden border rounded-md shadow-2xl shadow-slate-500 border-slate-300 bg-gradient-to-br from-transparent to-slate-400">
             <div className="flex items-center justify-between p-5 bg-slate-800">
                 <h3 className="text-2xl font-semibold hover:text-slate-400">
-                    <Link to={`/profile/${post.userId.username}`}>@{post.userId.username}</Link>
+                    <Link to={`/profile/${post.userId.username}`}>@{post.userId.username.toLowerCase()}</Link>
                 </h3>
                 <div className="flex items-center justify-center gap-3">
                     <span className="flex items-center gap-2">
