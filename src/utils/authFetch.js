@@ -81,7 +81,7 @@ export const verifyUser = async () => {
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "http://localhost:5001",
+                "Access-Control-Allow-Origin": "http://192.168.1.145:5001",
             },
             credentials: "include",
         });

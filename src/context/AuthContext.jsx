@@ -64,6 +64,7 @@ function AuthProvider({ children }) {
             setUser(data.user);
             setCredentials({});
             cookies.set("insta_auth", data.token);
+            console.log(cookies.get("insta_auth"));
 
             navigate("/");
         } catch (error) {
