@@ -16,7 +16,7 @@ export const createPost = async (post) => {
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "https://cn-instagram-bes.onrender.com",
+                "Access-Control-Allow-Origin": "https://gramster.netlify.app/",
             },
             body: JSON.stringify(post),
             credentials: "include",
@@ -37,7 +37,7 @@ export const likePost = async (postId) => {
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "https://cn-instagram-bes.onrender.com",
+                "Access-Control-Allow-Origin": "https://gramster.netlify.app/",
             },
             credentials: "include",
         });
@@ -57,7 +57,7 @@ export const createComment = async (comment) => {
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "https://cn-instagram-bes.onrender.com",
+                "Access-Control-Allow-Origin": "https://gramster.netlify.app/",
             },
             body: JSON.stringify(comment),
             credentials: "include",
@@ -78,7 +78,7 @@ export const deletePost = async (postId, userId) => {
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "https://cn-instagram-bes.onrender.com",
+                "Access-Control-Allow-Origin": "https://gramster.netlify.app/",
             },
             credentials: "include",
             body: JSON.stringify({ userId }),
