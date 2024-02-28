@@ -20,10 +20,10 @@ export default function AuthForm({ mode }) {
     };
 
     return (
-        <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-4 w-full max-w-sm my-10">
+        <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col w-full max-w-sm gap-4 my-10">
             {mode === "register" && (
                 <div className="flex flex-col gap-1 text-sm">
-                    <label htmlFor="email" className="text-zinc-800 font-semibold">
+                    <label htmlFor="email" className="font-semibold text-zinc-800">
                         Username:
                     </label>
                     <input
@@ -32,12 +32,12 @@ export default function AuthForm({ mode }) {
                         name="text"
                         disabled={loading}
                         placeholder="johndoe123"
-                        className="py-2 px-4 border rounded-sm outline-zinc-500 text-slate-800"
+                        className="px-4 py-2 border rounded-sm outline-zinc-500 text-slate-800"
                     />
                 </div>
             )}
             <div className="flex flex-col gap-1 text-sm">
-                <label htmlFor="email" className="text-zinc-800 font-semibold">
+                <label htmlFor="email" className="font-semibold text-zinc-800">
                     Email address:
                 </label>
                 <input
@@ -46,11 +46,11 @@ export default function AuthForm({ mode }) {
                     name="email"
                     disabled={loading}
                     placeholder="johndoe@mail.com"
-                    className="py-2 px-4 border rounded-sm outline-zinc-500 text-slate-800"
+                    className="px-4 py-2 border rounded-sm outline-zinc-500 text-slate-800"
                 />
             </div>
             <div className="flex flex-col gap-1 text-sm">
-                <label htmlFor="password" className="text-zinc-800 font-semibold">
+                <label htmlFor="password" className="font-semibold text-zinc-800">
                     Password:
                 </label>
                 <input
@@ -59,12 +59,12 @@ export default function AuthForm({ mode }) {
                     name="password"
                     disabled={loading}
                     placeholder="Password"
-                    className="py-2 px-4 border rounded-sm outline-zinc-500 text-slate-800"
+                    className="px-4 py-2 border rounded-sm outline-zinc-500 text-slate-800"
                 />
             </div>
 
             {errorMsg && (
-                <div className="flex animate-pulse items-center gap-2 p-2 border border-red-600 bg-red-300 text-red-700 rounded-sm">
+                <div className="flex items-center gap-2 p-2 text-red-700 bg-red-300 border border-red-600 rounded-sm animate-pulse">
                     <ShieldAlert size={20} />
                     {errorMsg}
                 </div>
@@ -80,7 +80,7 @@ export default function AuthForm({ mode }) {
                 {mode === "register" ? "Already" : "Don't"} have an account?{" "}
                 <Link
                     to={mode === "register" ? "/login" : "/register"}
-                    className="text-zinc-100 font-semibold hover:underline"
+                    className="font-semibold text-slate-600 hover:underline"
                 >
                     {mode === "register" ? "Login" : "Register"}
                 </Link>
