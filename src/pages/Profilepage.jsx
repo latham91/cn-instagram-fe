@@ -30,11 +30,7 @@ export default function Profilepage() {
                     Joined on {new Date(userPosts.createdAt).toLocaleDateString()}
                 </div>
                 {userPosts.posts ? (
-                    <div
-                        className={`grid ${
-                            userPosts.posts.length === 1 ? "grid-cols-1" : "grid-cols-2"
-                        } w-full gap-5 my-5 max-h-[600px]`}
-                    >
+                    <div className={`grid grid-cols-2 w-full gap-5 my-5 max-h-[600px]`}>
                         {!userPosts.posts ? (
                             <h1 className="text-3xl font-bold">No posts found</h1>
                         ) : (
