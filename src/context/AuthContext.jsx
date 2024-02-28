@@ -16,7 +16,6 @@ function AuthProvider({ children }) {
     const [errorMsg, setErrorMsg] = useState("");
     const [credentials, setCredentials] = useState({});
     const [onlineUsers, setOnlineUsers] = useState([]);
-    const [authCookie, setAuthCookie] = useState(cookies.get("insta_auth"));
 
     // Register User
     const handleRegister = async () => {
@@ -78,7 +77,7 @@ function AuthProvider({ children }) {
 
     const handleLogout = async () => {
         try {
-            const data = await logoutUser(authCookie);
+            const data = await logoutUser();
 
             if (!data.success) {
                 return setErrorMsg(data.message);
@@ -106,8 +105,6 @@ function AuthProvider({ children }) {
                 credentials,
                 setCredentials,
                 onlineUsers,
-                authCookie,
-                setAuthCookie,
                 setOnlineUsers,
                 handleRegister,
                 handleLogin,

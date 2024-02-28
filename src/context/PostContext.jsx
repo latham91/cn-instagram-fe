@@ -9,12 +9,11 @@ function PostProvider({ children }) {
     const cookies = new Cookies();
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
-    const [authCookie, setAuthCookie] = useState(cookies.get("insta_auth"));
 
     const handleCreatePost = async (post) => {
         try {
             setLoading(true);
-            const data = await createPost(post, authCookie);
+            const data = await createPost(post);
 
             if (!data.success) {
                 setTimeout(() => {
@@ -71,8 +70,6 @@ function PostProvider({ children }) {
                 setLoading,
                 errorMsg,
                 setErrorMsg,
-                authCookie,
-                setAuthCookie,
                 handleCreatePost,
                 handleDeletePost,
             }}

@@ -1,8 +1,3 @@
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
-
-const token = cookies.get("insta_auth");
-
 export const registerUser = async (credentials) => {
     try {
         const response = await fetch("https://cn-instagram-be.onrender.com/api/users/register", {
@@ -46,7 +41,6 @@ export const getOnlineUsers = async () => {
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
             },
             credentials: "include",
         });
@@ -59,14 +53,13 @@ export const getOnlineUsers = async () => {
     }
 };
 
-export const logoutUser = async (token) => {
+export const logoutUser = async () => {
     try {
         const response = await fetch("https://cn-instagram-be.onrender.com/api/users/logout", {
             method: "POST",
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
             },
             credentials: "include",
         });
@@ -86,7 +79,6 @@ export const verifyUser = async () => {
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
             },
             credentials: "include",
         });
