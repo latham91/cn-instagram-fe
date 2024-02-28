@@ -23,7 +23,7 @@ export default function Homepage() {
     return (
         <section className="relative py-10">
             <Container>
-                <div className="absolute flex flex-col items-center justify-center gap-3 top-20 left-18 text-slate-800">
+                <div className="absolute flex-col items-center justify-center hidden gap-3 lg:flex top-20 left-18 text-slate-800">
                     {onlineUsers.length > 0 && (
                         <div className="mb-3 text-xl font-extrabold text-slate-800">Online users</div>
                     )}

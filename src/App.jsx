@@ -33,7 +33,6 @@ export default function App() {
         };
 
         window.addEventListener("visibilitychange", (e) => handleBeforeUnload(e));
-        console.log("Event listener added");
 
         return () => {
             // Cleanup: remove the event listener when the component unmounts
