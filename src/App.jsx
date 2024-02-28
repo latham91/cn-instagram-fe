@@ -32,12 +32,12 @@ export default function App() {
             await sendOfflineSignal();
         };
 
-        window.addEventListener("beforeunload", (e) => handleBeforeUnload(e));
+        window.addEventListener("visibilitychange", (e) => handleBeforeUnload(e));
         console.log("Event listener added");
 
         return () => {
             // Cleanup: remove the event listener when the component unmounts
-            window.removeEventListener("beforeunload", handleBeforeUnload);
+            window.removeEventListener("visibilitychange", handleBeforeUnload);
         };
     }, []);
 
