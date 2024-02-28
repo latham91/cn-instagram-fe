@@ -30,6 +30,7 @@ function PostProvider({ children }) {
                 setErrorMsg("");
             }, 3000);
 
+            setLoading(false);
             return setErrorMsg(error.message);
         }
     };

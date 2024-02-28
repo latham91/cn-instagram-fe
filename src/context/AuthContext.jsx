@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { createContext, useState } from "react";
-import { loginUser, registerUser } from "../utils/authFetch";
+import { loginUser, logoutUser, registerUser } from "../utils/authFetch";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 
@@ -15,6 +15,7 @@ function AuthProvider({ children }) {
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
     const [credentials, setCredentials] = useState({});
+    const [onlineUsers, setOnlineUsers] = useState([]);
 
     // Register User
     const handleRegister = async () => {
@@ -75,10 +76,23 @@ function AuthProvider({ children }) {
         }
     };
 
-    const handleLogout = () => {
-        cookies.remove("insta_auth");
-        setUser(null);
-        navigate("/");
+    const handleLogout = async () => {
+        try {
+            const data = await logoutUser();
+
+            if (!data.success) {
+                return setErrorMsg(data.message);
+            }
+
+            cookies.remove("insta_auth");
+            setUser(null);
+            const updateOnlineUsers = onlineUsers.filter((user) => user._id !== data.user._id);
+            setOnlineUsers(updateOnlineUsers);
+
+            navigate("/");
+        } catch (error) {
+            return error;
+        }
     };
 
     return (
@@ -92,6 +106,8 @@ function AuthProvider({ children }) {
                 setErrorMsg,
                 credentials,
                 setCredentials,
+                onlineUsers,
+                setOnlineUsers,
                 handleRegister,
                 handleLogin,
                 handleLogout,
