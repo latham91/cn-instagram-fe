@@ -26,12 +26,13 @@ export default function App() {
     }, [setUser]);
 
     useEffect(() => {
-        const handleBeforeUnload = async () => {
+        const handleBeforeUnload = async (e) => {
+            e.preventDefault();
             // Send a final signal to the server before the page is unloaded
             await sendOfflineSignal();
         };
 
-        window.addEventListener("beforeunload", handleBeforeUnload);
+        window.addEventListener("beforeunload", (e) => handleBeforeUnload(e));
         console.log("Event listener added");
 
         return () => {
