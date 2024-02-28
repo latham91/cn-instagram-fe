@@ -4,7 +4,7 @@ import { PostContext } from "../context/PostContext";
 import { AuthContext } from "../context/AuthContext";
 
 export default function PostCreate() {
-    const { handleCreatePost, loading } = useContext(PostContext);
+    const { handleCreatePost, loading, errorMsg } = useContext(PostContext);
     const { user } = useContext(AuthContext);
     const [textAreaLength, setTextAreaLength] = useState(0);
     const [fileName, setFileName] = useState("");
@@ -54,7 +54,10 @@ export default function PostCreate() {
                         className="border py-2 px-4 mt-2 rounded-sm w-full max-h-[150px] min-h-[70px] text-slate-800 focus:outline-slate-800"
                         maxLength={255}
                     />
-                    <span className="flex justify-end">{textAreaLength}/255 characters</span>
+                    <div className="flex items-center justify-between">
+                        {errorMsg && <span className="text-red-500 animate-pulse">{errorMsg}</span>}
+                        <span className="flex justify-end">{textAreaLength}/255 characters</span>
+                    </div>
                 </div>
                 <div className="flex justify-between">
                     <div className="flex items-center gap-4">

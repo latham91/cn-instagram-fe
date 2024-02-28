@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 export default function PostCard({ post, likes, profile }) {
     const { user } = useContext(AuthContext);
-    const { handleDeletePost } = useContext(PostContext);
+    const { handleDeletePost, loading } = useContext(PostContext);
     const [comments, setComments] = useState(post.comments);
     const [optLikes, setOptLikes] = useState(likes);
     const [toggleComments, setToggleComments] = useState(false);
@@ -79,10 +79,11 @@ export default function PostCard({ post, likes, profile }) {
                     {user && post.userId._id === user.id && (
                         <button
                             onClick={() => handleDeletePost(post._id, post.userId._id)}
-                            className="flex items-center justify-center gap-2 p-2 text-sm bg-red-500 rounded-md"
+                            disabled={loading}
+                            className="flex items-center justify-center gap-2 p-2 text-sm bg-red-500 rounded-md disabled:bg-red-300 disabled:text-gray-400"
                         >
                             <Trash size={20} />
-                            Delete
+                            {loading ? "Deleting..." : "Delete"}
                         </button>
                     )}
                 </div>
