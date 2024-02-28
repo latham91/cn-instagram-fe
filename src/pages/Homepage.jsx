@@ -24,7 +24,9 @@ export default function Homepage() {
         <section className="relative py-10">
             <Container>
                 <div className="absolute flex flex-col items-center justify-center gap-3 top-20 left-18 text-slate-800">
-                    {onlineUsers && <div className="mb-3 text-xl font-extrabold text-slate-800">Online users</div>}
+                    {onlineUsers.length > 0 && (
+                        <div className="mb-3 text-xl font-extrabold text-slate-800">Online users</div>
+                    )}
                     {onlineUsers &&
                         onlineUsers.map((user) => (
                             <div key={user._id}>
