@@ -33,7 +33,7 @@ export default function Profilepage() {
                     <div
                         className={`grid ${
                             userPosts.posts.length === 1 ? "grid-cols-1" : "grid-cols-2"
-                        } max-w-[600px] gap-5 my-5`}
+                        } w-full md:w-3/5 gap-5 my-5`}
                     >
                         {!userPosts.posts ? (
                             <h1 className="text-3xl font-bold">No posts found</h1>

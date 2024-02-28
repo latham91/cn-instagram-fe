@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 
 export default function PostCreate() {
     const { handleCreatePost } = useContext(PostContext);
-    const { user } = useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext);
     const [textAreaLength, setTextAreaLength] = useState(0);
     const [fileName, setFileName] = useState("");
     const [postBody, setPostBody] = useState({
@@ -71,9 +71,13 @@ export default function PostCreate() {
                             <span>{postBody.image ? fileName : "Upload an image"}</span>
                         </label>
                     </div>
-                    <button onClick={handleSubmit} className="flex items-center gap-2 btn bg-zinc-100 text-slate-800">
+                    <button
+                        onClick={handleSubmit}
+                        disabled={loading}
+                        className="flex items-center gap-2 btn bg-zinc-100 text-slate-800"
+                    >
                         <Newspaper size={16} />
-                        Create post
+                        {loading ? "Posting..." : "Post"}
                     </button>
                 </div>
             </div>

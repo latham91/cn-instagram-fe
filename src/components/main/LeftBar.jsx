@@ -1,3 +1,3 @@
 export default function LeftBar() {
-    return <div className="w-1/4 flex p-4">LEFT</div>;
+    return <div className="flex w-1/4 p-4 text-slate-800">LEFT</div>;
 }

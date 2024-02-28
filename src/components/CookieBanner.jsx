@@ -9,7 +9,6 @@ export default function CookieBanner() {
         const cookie = cookies.get("cookieBanner");
 
         if (cookie === "accepted") {
-            console.log("Cookie accepted");
             setBanner(false);
         }
     }, []);

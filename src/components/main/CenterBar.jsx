@@ -27,15 +27,18 @@ export default function CenterBar() {
             <div className="flex flex-col justify-center w-full sm:w-full md:w-3/5">
                 {user && <PostCreate />}
                 <div className="grid grid-cols-1 my-5 gap-14">
-                    {posts &&
-                        posts.map((post) => (
-                            <FadeUp key={post._id}>
-                                <PostCard post={post} likes={post.likes} />
-                            </FadeUp>
-                        ))}
-                    {!posts.length && (
-                        <div className="flex items-center justify-center py-5 text-lg">
-                            No posts found. Be the first to share a moment.
+                    {posts.length === 0 ? (
+                        <div className="text-xl font-semibold text-center text-slate-800">
+                            No posts yet. Be the first to post!
+                        </div>
+                    ) : (
+                        <div>
+                            <h3 className="mb-5 text-3xl font-extrabold text-slate-800">Latest posts</h3>
+                            {posts.map((post) => (
+                                <FadeUp key={post._id}>
+                                    <PostCard post={post} likes={post.likes} />
+                                </FadeUp>
+                            ))}
                         </div>
                     )}
                 </div>
