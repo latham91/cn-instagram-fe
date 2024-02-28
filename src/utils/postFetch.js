@@ -1,6 +1,6 @@
 export const getAllPosts = async () => {
     try {
-        const response = await fetch("http://192.168.1.145:5001/api/posts");
+        const response = await fetch("https://cn-instagram-bes.onrender.com/api/posts");
         const data = await response.json();
 
         return data;
@@ -11,12 +11,12 @@ export const getAllPosts = async () => {
 
 export const createPost = async (post) => {
     try {
-        const response = await fetch("http://192.168.1.145:5001/api/posts/create", {
+        const response = await fetch("https://cn-instagram-bes.onrender.com/api/posts/create", {
             method: "POST",
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "http://localhost:5001",
+                "Access-Control-Allow-Origin": "https://cn-instagram-bes.onrender.com",
             },
             body: JSON.stringify(post),
             credentials: "include",
@@ -32,12 +32,12 @@ export const createPost = async (post) => {
 
 export const likePost = async (postId) => {
     try {
-        const response = await fetch(`http://192.168.1.145:5001/api/likes/${postId}`, {
+        const response = await fetch(`https://cn-instagram-bes.onrender.com/api/likes/${postId}`, {
             method: "POST",
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "http://localhost:5001",
+                "Access-Control-Allow-Origin": "https://cn-instagram-bes.onrender.com",
             },
             credentials: "include",
         });
@@ -52,12 +52,12 @@ export const likePost = async (postId) => {
 
 export const createComment = async (comment) => {
     try {
-        const response = await fetch(`http://192.168.1.145:5001/api/comments/${comment.postId}/create`, {
+        const response = await fetch(`https://cn-instagram-bes.onrender.com/api/comments/${comment.postId}/create`, {
             method: "POST",
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "http://localhost:5001",
+                "Access-Control-Allow-Origin": "https://cn-instagram-bes.onrender.com",
             },
             body: JSON.stringify(comment),
             credentials: "include",
@@ -73,12 +73,12 @@ export const createComment = async (comment) => {
 
 export const deletePost = async (postId, userId) => {
     try {
-        const response = await fetch(`http://192.168.1.145:5001/api/posts/${postId}`, {
+        const response = await fetch(`https://cn-instagram-bes.onrender.com/api/posts/${postId}`, {
             method: "DELETE",
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "http://localhost:5001",
+                "Access-Control-Allow-Origin": "https://cn-instagram-bes.onrender.com",
             },
             credentials: "include",
             body: JSON.stringify({ userId }),
@@ -94,7 +94,7 @@ export const deletePost = async (postId, userId) => {
 
 export const getPostsByUsername = async (username) => {
     try {
-        const response = await fetch(`http://192.168.1.145:5001/api/posts/${username}`);
+        const response = await fetch(`https://cn-instagram-bes.onrender.com/api/posts/${username}`);
         const data = await response.json();
 
         return data;
