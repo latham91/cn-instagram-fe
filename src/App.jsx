@@ -32,6 +32,7 @@ export default function App() {
         };
 
         window.addEventListener("beforeunload", handleBeforeUnload);
+        console.log("Event listener added");
 
         return () => {
             // Cleanup: remove the event listener when the component unmounts
