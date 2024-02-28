@@ -72,13 +72,14 @@ export const logoutUser = async () => {
     }
 };
 
-export const verifyUser = async () => {
+export const verifyUser = async (token) => {
     try {
         const response = await fetch("https://cn-instagram-be.onrender.com/api/users/verify", {
             method: "POST",
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
             },
             credentials: "include",
         });

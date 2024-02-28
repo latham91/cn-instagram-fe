@@ -11,11 +11,11 @@ import Profilepage from "./pages/Profilepage";
 import CookieBanner from "./components/CookieBanner";
 
 export default function App() {
-    const { setUser } = useContext(AuthContext);
+    const { setUser, authCookie } = useContext(AuthContext);
 
     useEffect(() => {
         const fetchUser = async () => {
-            const data = await verifyUser();
+            const data = await verifyUser(authCookie);
 
             if (data.success) {
                 setUser(data.user);
@@ -24,7 +24,7 @@ export default function App() {
         };
 
         fetchUser();
-    }, [setUser]);
+    }, [setUser, authCookie]);
 
     return (
         <>
