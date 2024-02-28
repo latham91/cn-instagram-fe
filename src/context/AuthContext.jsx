@@ -85,7 +85,6 @@ function AuthProvider({ children }) {
                 return setErrorMsg(data.message);
             }
 
-            cookies.remove("insta_auth");
             setUser(null);
             const updateOnlineUsers = onlineUsers.filter((user) => user._id !== data.user._id);
             setOnlineUsers(updateOnlineUsers);
