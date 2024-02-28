@@ -98,6 +98,7 @@ export const sendOfflineSignal = async () => {
         const response = await fetch("https://cn-instagram-be.onrender.com/api/users/setoffline", {
             method: "POST",
             mode: "cors",
+            keepalive: true,
             headers: {
                 "Content-Type": "application/json",
             },
