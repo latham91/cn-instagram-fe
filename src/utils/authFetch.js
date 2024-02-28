@@ -59,7 +59,7 @@ export const getOnlineUsers = async () => {
     }
 };
 
-export const logoutUser = async () => {
+export const logoutUser = async (token) => {
     try {
         const response = await fetch("https://cn-instagram-be.onrender.com/api/users/logout", {
             method: "POST",
