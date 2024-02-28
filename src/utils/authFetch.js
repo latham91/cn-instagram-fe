@@ -61,7 +61,7 @@ export const logoutUser = async () => {
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "http://localhost:5001",
+                "Access-Control-Allow-Origin": "https://gramster.netlify.app/",
             },
             credentials: "include",
         });
@@ -81,7 +81,7 @@ export const verifyUser = async () => {
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "http://localhost:5001",
+                "Access-Control-Allow-Origin": "https://gramster.netlify.app/",
             },
             credentials: "include",
         });
