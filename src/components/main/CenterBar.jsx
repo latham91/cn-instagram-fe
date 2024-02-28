@@ -33,8 +33,8 @@ export default function CenterBar() {
                         </div>
                     ) : (
                         <>
-                            <h3 className="mb-5 text-3xl font-extrabold text-slate-800">Latest posts</h3>
-                            <div className="flex flex-col gap-5">
+                            <h3 className="text-3xl font-extrabold text-slate-800">Latest posts</h3>
+                            <div className="flex flex-col gap-10">
                                 {posts.map((post) => (
                                     <FadeUp key={post._id}>
                                         <PostCard post={post} likes={post.likes} />
