@@ -7,7 +7,7 @@ export default function OnlineUser({ user }) {
             <div className="w-4 h-4 m-1 bg-green-500 rounded-full" />
             <div className="flex items-center justify-start">
                 <span className="font-semibold hover:underline">
-                    <Link to={`/profile/${user.username}`}>@{user.username}</Link>
+                    <Link to={`/profile/${user.username}`}>@{user.username.toLowerCase()}</Link>
                 </span>{" "}
                 - online
             </div>
