@@ -92,3 +92,22 @@ export const verifyUser = async () => {
         return error;
     }
 };
+
+export const sendOfflineSignal = async () => {
+    try {
+        const response = await fetch("https://cn-instagram-be.onrender.com/api/users/setoffline", {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include",
+        });
+
+        const data = await response.json();
+
+        return data;
+    } catch (error) {
+        return error;
+    }
+};

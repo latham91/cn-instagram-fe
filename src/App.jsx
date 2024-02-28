@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { verifyUser } from "./utils/authFetch";
+import { sendOfflineSignal, verifyUser } from "./utils/authFetch";
 
 import Navbar from "./components/Navbar";
 import Homepage from "./pages/Homepage";
@@ -11,11 +11,11 @@ import Profilepage from "./pages/Profilepage";
 import CookieBanner from "./components/CookieBanner";
 
 export default function App() {
-    const { setUser, authCookie } = useContext(AuthContext);
+    const { setUser } = useContext(AuthContext);
 
     useEffect(() => {
         const fetchUser = async () => {
-            const data = await verifyUser(authCookie);
+            const data = await verifyUser();
 
             if (data.success) {
                 setUser(data.user);
@@ -23,7 +23,21 @@ export default function App() {
         };
 
         fetchUser();
-    }, [setUser, authCookie]);
+    }, [setUser]);
+
+    useEffect(() => {
+        const handleBeforeUnload = async () => {
+            // Send a final signal to the server before the page is unloaded
+            await sendOfflineSignal();
+        };
+
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
+        return () => {
+            // Cleanup: remove the event listener when the component unmounts
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
+    }, []);
 
     return (
         <>
