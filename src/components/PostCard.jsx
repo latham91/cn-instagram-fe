@@ -92,7 +92,7 @@ export default function PostCard({ post, likes, profile }) {
                     src={post.image}
                     alt="post"
                     draggable={false}
-                    className="object-cover w-full h-full transition-all duration-300 ease-in-out hover:scale-105"
+                    className="object-cover w-full h-[600px] max-h-[600px] transition-all duration-300 ease-in-out hover:scale-105"
                 />
             </div>
             <div>
