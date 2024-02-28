@@ -19,7 +19,6 @@ export default function App() {
 
             if (data.success) {
                 setUser(data.user);
-                console.log(data);
             }
         };
 
