@@ -66,7 +66,16 @@ function PostProvider({ children }) {
 
     return (
         <PostContext.Provider
-            value={{ loading, setLoading, errorMsg, setErrorMsg, handleCreatePost, handleDeletePost }}
+            value={{
+                loading,
+                setLoading,
+                errorMsg,
+                setErrorMsg,
+                authCookie,
+                setAuthCookie,
+                handleCreatePost,
+                handleDeletePost,
+            }}
         >
             {children}
         </PostContext.Provider>
