@@ -29,7 +29,7 @@ export default function CenterBar() {
                 <div className="grid grid-cols-1 my-5 gap-14">
                     {posts.length === 0 ? (
                         <div className="text-xl font-semibold text-center text-slate-800">
-                            No posts yet. Be the first to post!
+                            No posts yet. Or backend server is booting up. Try again later.
                         </div>
                     ) : (
                         <>
