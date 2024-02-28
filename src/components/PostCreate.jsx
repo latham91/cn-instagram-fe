@@ -4,8 +4,8 @@ import { PostContext } from "../context/PostContext";
 import { AuthContext } from "../context/AuthContext";
 
 export default function PostCreate() {
-    const { handleCreatePost } = useContext(PostContext);
-    const { user, loading } = useContext(AuthContext);
+    const { handleCreatePost, loading } = useContext(PostContext);
+    const { user } = useContext(AuthContext);
     const [textAreaLength, setTextAreaLength] = useState(0);
     const [fileName, setFileName] = useState("");
     const [postBody, setPostBody] = useState({
