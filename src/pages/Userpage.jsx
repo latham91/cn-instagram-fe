@@ -11,7 +11,6 @@ export default function Accountpage() {
         const fetchLikedPosts = async () => {
             const data = await getUsersLikedPosts();
             setLikedPosts(data.posts);
-            console.log(data.posts);
         };
 
         fetchLikedPosts();
