@@ -100,3 +100,21 @@ export const getPostsByUsername = async (username) => {
         return error;
     }
 };
+
+export const getUsersLikedPosts = async () => {
+    try {
+        const response = await fetch(`${url}/api/likes/liked-posts`, {
+            method: "GET",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include",
+        });
+        const data = await response.json();
+
+        return data;
+    } catch (error) {
+        return error;
+    }
+};

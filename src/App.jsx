@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { sendOfflineSignal, verifyUser } from "./utils/authFetch";
+import { getOnlineUsers, verifyUser } from "./utils/authFetch";
 
 import Navbar from "./components/Navbar";
 import Homepage from "./pages/Homepage";
@@ -9,6 +9,7 @@ import Registerpage from "./pages/Registerpage";
 import { AuthContext } from "./context/AuthContext";
 import Profilepage from "./pages/Profilepage";
 import CookieBanner from "./components/CookieBanner";
+import Userpage from "./pages/Userpage";
 
 export default function App() {
     const { setUser } = useContext(AuthContext);
@@ -25,20 +26,19 @@ export default function App() {
         fetchUser();
     }, [setUser]);
 
+    const { setOnlineUsers } = useContext(AuthContext);
+
     useEffect(() => {
-        const handleBeforeUnload = async (e) => {
-            e.preventDefault();
-            // Send a final signal to the server before the page is unloaded
-            await sendOfflineSignal();
+        const fetchOnlineUsers = async () => {
+            const data = await getOnlineUsers();
+
+            if (data.success) {
+                setOnlineUsers(data.users);
+            }
         };
 
-        window.addEventListener("visibilitychange", (e) => handleBeforeUnload(e));
-
-        return () => {
-            // Cleanup: remove the event listener when the component unmounts
-            window.removeEventListener("visibilitychange", handleBeforeUnload);
-        };
-    }, []);
+        fetchOnlineUsers();
+    }, [setOnlineUsers]);
 
     return (
         <>
@@ -51,6 +51,7 @@ export default function App() {
                 <Route path="/login" element={<Loginpage />} />
                 <Route path="/register" element={<Registerpage />} />
                 <Route path="/profile/:username" element={<Profilepage />} />
+                <Route path="/account" element={<Userpage />} />
             </Routes>
             <CookieBanner />
         </>

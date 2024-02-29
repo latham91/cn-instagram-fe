@@ -1,11 +1,27 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { Camera, LogIn, LogOut, UserPlus } from "lucide-react";
+import { Camera, LogIn, LogOut, Settings, UserPlus } from "lucide-react";
 import OnlineUser from "./OnlineUser";
+import { sendOfflineSignal } from "../utils/authFetch";
 
 export default function Navbar() {
     const { user, handleLogout, onlineUsers } = useContext(AuthContext);
+
+    useEffect(() => {
+        const handleBeforeUnload = async (e) => {
+            e.preventDefault();
+            // Send a final signal to the server before the page is unloaded
+            await sendOfflineSignal();
+        };
+
+        window.addEventListener("beforeunload", (e) => handleBeforeUnload(e));
+
+        return () => {
+            // Cleanup: remove the event listener when the component unmounts
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
+    }, []);
 
     return (
         <header className="fixed top-0 z-50 h-screen p-4 shadow-2xl hidden sm:block w-full max-w-[70px] md:max-w-[350px] shadow-slate-400 bg-slate-800">
@@ -54,13 +70,22 @@ export default function Navbar() {
                                     </div>
                                 )}
                             </div>
-                            <button
-                                onClick={handleLogout}
-                                className="flex items-center justify-center gap-2 py-3 font-semibold rounded-sm bg-slate-100 text-slate-800"
-                            >
-                                <LogOut size={20} />
-                                <span className="hidden md:block">Logout</span>
-                            </button>
+
+                            <div className="flex flex-col gap-3">
+                                <Link to="/account">
+                                    <button className="flex items-center justify-center w-full gap-2 py-3 font-semibold rounded-sm bg-slate-100 text-slate-800">
+                                        <Settings size={20} />
+                                        Account
+                                    </button>
+                                </Link>
+                                <button
+                                    onClick={handleLogout}
+                                    className="flex items-center justify-center gap-2 py-3 font-semibold rounded-sm bg-slate-100 text-slate-800"
+                                >
+                                    <LogOut size={20} />
+                                    <span className="hidden md:block">Logout</span>
+                                </button>
+                            </div>
                         </div>
                     )}
                 </div>
