@@ -1,6 +1,8 @@
+const url = import.meta.env.PROD ? "https://cn-instagram-be.onrender.com" : "http://localhost:5001";
+
 export const getAllPosts = async () => {
     try {
-        const response = await fetch("https://cn-instagram-be.onrender.com/api/posts");
+        const response = await fetch(`${url}/api/posts`);
         const data = await response.json();
 
         return data;
@@ -11,7 +13,7 @@ export const getAllPosts = async () => {
 
 export const createPost = async (post) => {
     try {
-        const response = await fetch("https://cn-instagram-be.onrender.com/api/posts/create", {
+        const response = await fetch(`${url}/api/posts/create`, {
             method: "POST",
             mode: "cors",
             headers: {
@@ -31,7 +33,7 @@ export const createPost = async (post) => {
 
 export const likePost = async (postId) => {
     try {
-        const response = await fetch(`https://cn-instagram-be.onrender.com/api/likes/${postId}`, {
+        const response = await fetch(`${url}/api/likes/${postId}`, {
             method: "POST",
             mode: "cors",
             headers: {
@@ -50,7 +52,7 @@ export const likePost = async (postId) => {
 
 export const createComment = async (comment) => {
     try {
-        const response = await fetch(`https://cn-instagram-be.onrender.com/api/comments/${comment.postId}/create`, {
+        const response = await fetch(`${url}/api/comments/${comment.postId}/create`, {
             method: "POST",
             mode: "cors",
             headers: {
@@ -70,7 +72,7 @@ export const createComment = async (comment) => {
 
 export const deletePost = async (postId, userId) => {
     try {
-        const response = await fetch(`https://cn-instagram-be.onrender.com/api/posts/${postId}`, {
+        const response = await fetch(`${url}/api/posts/${postId}`, {
             method: "DELETE",
             mode: "cors",
             headers: {
@@ -90,7 +92,7 @@ export const deletePost = async (postId, userId) => {
 
 export const getPostsByUsername = async (username) => {
     try {
-        const response = await fetch(`https://cn-instagram-be.onrender.com/api/posts/${username}`);
+        const response = await fetch(`${url}/api/posts/${username}`);
         const data = await response.json();
 
         return data;

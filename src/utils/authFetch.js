@@ -1,6 +1,8 @@
+const url = import.meta.env.PROD ? "https://cn-instagram-be.onrender.com" : "http://localhost:5001";
+
 export const registerUser = async (credentials) => {
     try {
-        const response = await fetch("https://cn-instagram-be.onrender.com/api/users/register", {
+        const response = await fetch(`${url}/api/users/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -19,7 +21,7 @@ export const registerUser = async (credentials) => {
 
 export const loginUser = async (credentials) => {
     try {
-        const response = await fetch("https://cn-instagram-be.onrender.com/api/users/login", {
+        const response = await fetch(`${url}/api/users/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -38,7 +40,7 @@ export const loginUser = async (credentials) => {
 
 export const getOnlineUsers = async () => {
     try {
-        const response = await fetch("https://cn-instagram-be.onrender.com/api/users/online", {
+        const response = await fetch(`${url}/api/users/online`, {
             method: "GET",
             mode: "cors",
             headers: {
@@ -57,7 +59,7 @@ export const getOnlineUsers = async () => {
 
 export const logoutUser = async () => {
     try {
-        const response = await fetch("https://cn-instagram-be.onrender.com/api/users/logout", {
+        const response = await fetch(`${url}/api/users/logout`, {
             method: "POST",
             mode: "cors",
             headers: {
@@ -76,7 +78,7 @@ export const logoutUser = async () => {
 
 export const verifyUser = async () => {
     try {
-        const response = await fetch("https://cn-instagram-be.onrender.com/api/users/verify", {
+        const response = await fetch(`${url}/api/users/verify`, {
             method: "POST",
             mode: "cors",
             headers: {
@@ -95,7 +97,7 @@ export const verifyUser = async () => {
 
 export const sendOfflineSignal = async () => {
     try {
-        const response = await fetch("https://cn-instagram-be.onrender.com/api/users/setoffline", {
+        const response = await fetch(`${url}/api/users/setoffline`, {
             method: "POST",
             mode: "cors",
             keepalive: true,

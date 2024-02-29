@@ -93,7 +93,7 @@ export default function PostCard({ post, likes, profile }) {
                     src={post.image}
                     alt="post"
                     draggable={false}
-                    className="object-cover w-full h-[600px] max-h-[600px] transition-all duration-300 ease-in-out hover:scale-105"
+                    className="object-cover transition-all w-full duration-300 ease-in-out min-h-[600px] max-h-[600px] hover:scale-105"
                 />
             </div>
             <div>
@@ -103,7 +103,7 @@ export default function PostCard({ post, likes, profile }) {
                 </p>
             </div>
 
-            <div className="flex items-center justify-between gap-3 px-5 py-3 min-h-16 bg-slate-800">
+            <div className="flex items-center justify-between gap-3 px-5 py-3 mt-auto min-h-16 bg-slate-800">
                 <span className="text-lg font-semibold">
                     {optLikes.length} {optLikes.length === 1 ? "like" : "likes"}
                 </span>
@@ -131,6 +131,7 @@ export default function PostCard({ post, likes, profile }) {
                     </>
                 )}
             </div>
+
             {toggleComments && (
                 <div className="p-5 bg-slate-800">
                     <span>Comments</span>

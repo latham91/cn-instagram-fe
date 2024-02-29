@@ -42,6 +42,9 @@ export default function App() {
 
     return (
         <>
+            {/* <div className="fixed w-[800px] rounded-full h-[800px] -left-52 top-0 bg-blue-500/30 blur-3xl -z-50" />
+            <div className="fixed w-[800px] rounded-full h-[800px] -right-52 -bottom-52 bg-teal-400/30 blur-3xl -z-50" /> */}
+
             <Navbar />
             <Routes>
                 <Route exact path="/" element={<Homepage />} />

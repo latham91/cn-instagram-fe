@@ -23,8 +23,8 @@ export default function CenterBar() {
     }, []);
 
     return (
-        <>
-            <div className="flex flex-col justify-center w-full sm:w-full md:w-3/5">
+        <div className="flex justify-center">
+            <div className="flex flex-col justify-center w-full md:w-5/6">
                 {user && <PostCreate />}
                 <div className="grid grid-cols-1 my-5 gap-14">
                     {posts.length === 0 ? (
@@ -33,7 +33,7 @@ export default function CenterBar() {
                         </div>
                     ) : (
                         <>
-                            <h3 className="text-3xl font-extrabold text-slate-800">Latest posts</h3>
+                            <h3 className="text-4xl font-extrabold text-slate-800">Latest posts</h3>
                             <div className="flex flex-col gap-10">
                                 {posts.map((post) => (
                                     <FadeUp key={post._id}>
@@ -45,6 +45,6 @@ export default function CenterBar() {
                     )}
                 </div>
             </div>
-        </>
+        </div>
     );
 }
