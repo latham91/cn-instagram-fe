@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { getPostsByUsername } from "../utils/postFetch";
 import PostCard from "../components/PostCard";
@@ -8,17 +8,21 @@ export default function Profilepage() {
     const { username } = useParams();
     const [userPosts, setUserPosts] = useState([]);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchUserPosts = async () => {
             const data = await getPostsByUsername(username);
 
             if (data.success) {
-                setUserPosts(data.userPosts);
+                return setUserPosts(data.userPosts);
             }
+
+            navigate("/not-found");
         };
 
         fetchUserPosts();
-    }, [username]);
+    }, [username, navigate]);
 
     return (
         <section className="flex items-center justify-center px-5 py-10 sm:px-14">

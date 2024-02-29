@@ -112,7 +112,6 @@ export const getUsersLikedPosts = async () => {
             credentials: "include",
         });
         const data = await response.json();
-
         return data;
     } catch (error) {
         return error;

@@ -10,6 +10,7 @@ import { AuthContext } from "./context/AuthContext";
 import Profilepage from "./pages/Profilepage";
 import CookieBanner from "./components/CookieBanner";
 import Userpage from "./pages/Userpage";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
     const { setUser } = useContext(AuthContext);
@@ -52,6 +53,8 @@ export default function App() {
                 <Route path="/register" element={<Registerpage />} />
                 <Route path="/profile/:username" element={<Profilepage />} />
                 <Route path="/account" element={<Userpage />} />
+                <Route path="/not-found" element={<NotFound />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
             <CookieBanner />
         </>

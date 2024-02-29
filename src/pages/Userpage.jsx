@@ -10,6 +10,7 @@ export default function Accountpage() {
     useEffect(() => {
         const fetchLikedPosts = async () => {
             const data = await getUsersLikedPosts();
+
             setLikedPosts(data.posts);
         };
 
