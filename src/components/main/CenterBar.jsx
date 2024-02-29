@@ -24,7 +24,7 @@ export default function CenterBar() {
 
     return (
         <div className="flex justify-center">
-            <div className="flex flex-col justify-center w-full md:w-5/6">
+            <div className="flex flex-col justify-center w-full md:w-4/6">
                 {user && <PostCreate />}
                 <div className="grid grid-cols-1 my-5 gap-14">
                     {posts.length === 0 ? (
