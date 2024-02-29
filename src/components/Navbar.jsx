@@ -15,11 +15,11 @@ export default function Navbar() {
             await sendOfflineSignal();
         };
 
-        window.addEventListener("beforeunload", (e) => handleBeforeUnload(e));
+        window.addEventListener("visiblitychange", (e) => handleBeforeUnload(e));
 
         return () => {
             // Cleanup: remove the event listener when the component unmounts
-            window.removeEventListener("beforeunload", handleBeforeUnload);
+            window.removeEventListener("visibilitychange", handleBeforeUnload);
         };
     }, []);
 
