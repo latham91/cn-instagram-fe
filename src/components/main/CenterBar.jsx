@@ -5,6 +5,7 @@ import { getAllPosts } from "../../utils/postFetch";
 import PostCreate from "../PostCreate";
 import PostCard from "../PostCard";
 import FadeUp from "../FadeUp";
+import Spinner from "../Spinner";
 
 export default function CenterBar() {
     const { user } = useContext(AuthContext);
@@ -28,8 +29,11 @@ export default function CenterBar() {
                 {user && <PostCreate />}
                 <div className="grid grid-cols-1 my-5 gap-14">
                     {posts.length === 0 ? (
-                        <div className="text-xl font-semibold text-center text-slate-800">
-                            No posts yet. Or backend server is booting up. Try again later.
+                        <div className="flex flex-col w-[400px] gap-5 text-xl font-semibold items-center justify-center text-slate-800">
+                            <p className="text-center">
+                                Render server spinning up <br /> please wait
+                            </p>
+                            <Spinner />
                         </div>
                     ) : (
                         <>
